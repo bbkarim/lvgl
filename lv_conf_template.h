@@ -549,26 +549,30 @@
 /*==================
  * THEMES
  *==================*/
+#ifndef LV_USE_EXTRA_THEMES
+    #define LV_USE_EXTRA_THEMES       1
+#endif /* LV_USE_EXTRA_THEMES */
+#if LV_USE_EXTRA_THEMES
+    /*A simple, impressive and very complete theme*/
+    #define LV_USE_THEME_DEFAULT      1
+    #if LV_USE_THEME_DEFAULT
 
-/*A simple, impressive and very complete theme*/
-#define LV_USE_THEME_DEFAULT 1
-#if LV_USE_THEME_DEFAULT
+        /*0: Light mode; 1: Dark mode*/
+        #define LV_THEME_DEFAULT_DARK 0
 
-    /*0: Light mode; 1: Dark mode*/
-    #define LV_THEME_DEFAULT_DARK 0
+        /*1: Enable grow on press*/
+        #define LV_THEME_DEFAULT_GROW 1
 
-    /*1: Enable grow on press*/
-    #define LV_THEME_DEFAULT_GROW 1
+        /*Default transition time in [ms]*/
+        #define LV_THEME_DEFAULT_TRANSITION_TIME 80
+    #endif /*LV_USE_THEME_DEFAULT*/
 
-    /*Default transition time in [ms]*/
-    #define LV_THEME_DEFAULT_TRANSITION_TIME 80
-#endif /*LV_USE_THEME_DEFAULT*/
+    /*A very simple theme that is a good starting point for a custom theme*/
+    #define LV_USE_THEME_BASIC        1
 
-/*A very simple theme that is a good starting point for a custom theme*/
-#define LV_USE_THEME_BASIC 1
-
-/*A theme designed for monochrome displays*/
-#define LV_USE_THEME_MONO 1
+    /*A theme designed for monochrome displays*/
+    #define LV_USE_THEME_MONO         1
+#endif /* LV_USE_EXTRA_THEMES */
 
 /*==================
  * LAYOUTS
@@ -585,6 +589,7 @@
  *====================*/
 
 /*File system interfaces for common APIs */
+#define LV_USE_FSDRV 0
 
 /*API for fopen, fread, etc*/
 #define LV_USE_FS_STDIO 0

@@ -1877,78 +1877,92 @@
 /*==================
  * THEMES
  *==================*/
-
-/*A simple, impressive and very complete theme*/
-#ifndef LV_USE_THEME_DEFAULT
-    #ifdef _LV_KCONFIG_PRESENT
-        #ifdef CONFIG_LV_USE_THEME_DEFAULT
-            #define LV_USE_THEME_DEFAULT CONFIG_LV_USE_THEME_DEFAULT
-        #else
-            #define LV_USE_THEME_DEFAULT 0
-        #endif
-    #else
-        #define LV_USE_THEME_DEFAULT 1
-    #endif
-#endif
-#if LV_USE_THEME_DEFAULT
-
-    /*0: Light mode; 1: Dark mode*/
-    #ifndef LV_THEME_DEFAULT_DARK
-        #ifdef CONFIG_LV_THEME_DEFAULT_DARK
-            #define LV_THEME_DEFAULT_DARK CONFIG_LV_THEME_DEFAULT_DARK
-        #else
-            #define LV_THEME_DEFAULT_DARK 0
-        #endif
-    #endif
-
-    /*1: Enable grow on press*/
-    #ifndef LV_THEME_DEFAULT_GROW
+#ifndef LV_USE_EXTRA_THEMES
+    #ifndef LV_USE_EXTRA_THEMES
         #ifdef _LV_KCONFIG_PRESENT
-            #ifdef CONFIG_LV_THEME_DEFAULT_GROW
-                #define LV_THEME_DEFAULT_GROW CONFIG_LV_THEME_DEFAULT_GROW
+            #ifdef CONFIG_LV_USE_EXTRA_THEMES
+                #define LV_USE_EXTRA_THEMES CONFIG_LV_USE_EXTRA_THEMES
             #else
-                #define LV_THEME_DEFAULT_GROW 0
+                #define LV_USE_EXTRA_THEMES 0
             #endif
         #else
-            #define LV_THEME_DEFAULT_GROW 1
+            #define LV_USE_EXTRA_THEMES       1
+        #endif
+    #endif
+#endif /* LV_USE_EXTRA_THEMES */
+#if LV_USE_EXTRA_THEMES
+    /*A simple, impressive and very complete theme*/
+    #ifndef LV_USE_THEME_DEFAULT
+        #ifdef _LV_KCONFIG_PRESENT
+            #ifdef CONFIG_LV_USE_THEME_DEFAULT
+                #define LV_USE_THEME_DEFAULT CONFIG_LV_USE_THEME_DEFAULT
+            #else
+                #define LV_USE_THEME_DEFAULT 0
+            #endif
+        #else
+            #define LV_USE_THEME_DEFAULT      1
+        #endif
+    #endif
+    #if LV_USE_THEME_DEFAULT
+
+        /*0: Light mode; 1: Dark mode*/
+        #ifndef LV_THEME_DEFAULT_DARK
+            #ifdef CONFIG_LV_THEME_DEFAULT_DARK
+                #define LV_THEME_DEFAULT_DARK CONFIG_LV_THEME_DEFAULT_DARK
+            #else
+                #define LV_THEME_DEFAULT_DARK 0
+            #endif
+        #endif
+
+        /*1: Enable grow on press*/
+        #ifndef LV_THEME_DEFAULT_GROW
+            #ifdef _LV_KCONFIG_PRESENT
+                #ifdef CONFIG_LV_THEME_DEFAULT_GROW
+                    #define LV_THEME_DEFAULT_GROW CONFIG_LV_THEME_DEFAULT_GROW
+                #else
+                    #define LV_THEME_DEFAULT_GROW 0
+                #endif
+            #else
+                #define LV_THEME_DEFAULT_GROW 1
+            #endif
+        #endif
+
+        /*Default transition time in [ms]*/
+        #ifndef LV_THEME_DEFAULT_TRANSITION_TIME
+            #ifdef CONFIG_LV_THEME_DEFAULT_TRANSITION_TIME
+                #define LV_THEME_DEFAULT_TRANSITION_TIME CONFIG_LV_THEME_DEFAULT_TRANSITION_TIME
+            #else
+                #define LV_THEME_DEFAULT_TRANSITION_TIME 80
+            #endif
+        #endif
+    #endif /*LV_USE_THEME_DEFAULT*/
+
+    /*A very simple theme that is a good starting point for a custom theme*/
+    #ifndef LV_USE_THEME_BASIC
+        #ifdef _LV_KCONFIG_PRESENT
+            #ifdef CONFIG_LV_USE_THEME_BASIC
+                #define LV_USE_THEME_BASIC CONFIG_LV_USE_THEME_BASIC
+            #else
+                #define LV_USE_THEME_BASIC 0
+            #endif
+        #else
+            #define LV_USE_THEME_BASIC        1
         #endif
     #endif
 
-    /*Default transition time in [ms]*/
-    #ifndef LV_THEME_DEFAULT_TRANSITION_TIME
-        #ifdef CONFIG_LV_THEME_DEFAULT_TRANSITION_TIME
-            #define LV_THEME_DEFAULT_TRANSITION_TIME CONFIG_LV_THEME_DEFAULT_TRANSITION_TIME
+    /*A theme designed for monochrome displays*/
+    #ifndef LV_USE_THEME_MONO
+        #ifdef _LV_KCONFIG_PRESENT
+            #ifdef CONFIG_LV_USE_THEME_MONO
+                #define LV_USE_THEME_MONO CONFIG_LV_USE_THEME_MONO
+            #else
+                #define LV_USE_THEME_MONO 0
+            #endif
         #else
-            #define LV_THEME_DEFAULT_TRANSITION_TIME 80
+            #define LV_USE_THEME_MONO         1
         #endif
     #endif
-#endif /*LV_USE_THEME_DEFAULT*/
-
-/*A very simple theme that is a good starting point for a custom theme*/
-#ifndef LV_USE_THEME_BASIC
-    #ifdef _LV_KCONFIG_PRESENT
-        #ifdef CONFIG_LV_USE_THEME_BASIC
-            #define LV_USE_THEME_BASIC CONFIG_LV_USE_THEME_BASIC
-        #else
-            #define LV_USE_THEME_BASIC 0
-        #endif
-    #else
-        #define LV_USE_THEME_BASIC 1
-    #endif
-#endif
-
-/*A theme designed for monochrome displays*/
-#ifndef LV_USE_THEME_MONO
-    #ifdef _LV_KCONFIG_PRESENT
-        #ifdef CONFIG_LV_USE_THEME_MONO
-            #define LV_USE_THEME_MONO CONFIG_LV_USE_THEME_MONO
-        #else
-            #define LV_USE_THEME_MONO 0
-        #endif
-    #else
-        #define LV_USE_THEME_MONO 1
-    #endif
-#endif
+#endif /* LV_USE_EXTRA_THEMES */
 
 /*==================
  * LAYOUTS
@@ -1985,6 +1999,13 @@
  *====================*/
 
 /*File system interfaces for common APIs */
+#ifndef LV_USE_FSDRV
+    #ifdef CONFIG_LV_USE_FSDRV
+        #define LV_USE_FSDRV CONFIG_LV_USE_FSDRV
+    #else
+        #define LV_USE_FSDRV 0
+    #endif
+#endif
 
 /*API for fopen, fread, etc*/
 #ifndef LV_USE_FS_STDIO

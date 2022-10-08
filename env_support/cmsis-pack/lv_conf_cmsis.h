@@ -449,7 +449,9 @@
 /*==================
  * WIDGETS
  *================*/
-
+#ifndef LV_USE_EXTRA_WIDGETS
+    #define LV_USE_EXTRA_WIDGETS      1
+#endif /* LV_USE_EXTRA_WIDGETS */
 /*Documentation of the widgets: https://docs.lvgl.io/latest/en/html/widgets/index.html*/
 
 #define LV_USE_ANIMIMG    1
@@ -542,10 +544,12 @@
 /*==================
  * THEMES
  *==================*/
-
-#ifdef RTE_GRAPHICS_LVGL_USE_EXTRA_THEMES
+#ifndef LV_USE_EXTRA_THEMES
+    #define LV_USE_EXTRA_THEMES       1
+#endif /* LV_USE_EXTRA_THEMES */
+#if LV_USE_EXTRA_THEMES
     /*A simple, impressive and very complete theme*/
-    #define LV_USE_THEME_DEFAULT 1
+    #define LV_USE_THEME_DEFAULT      1
     #if LV_USE_THEME_DEFAULT
 
         /*0: Light mode; 1: Dark mode*/
@@ -559,15 +563,15 @@
     #endif /*LV_USE_THEME_DEFAULT*/
 
     /*A very simple theme that is a good starting point for a custom theme*/
-    #define LV_USE_THEME_BASIC 1
+    #define LV_USE_THEME_BASIC        1
 
     /*A theme designed for monochrome displays*/
-    #define LV_USE_THEME_MONO 1
+    #define LV_USE_THEME_MONO         1
 #else
-    #define LV_USE_THEME_DEFAULT    0
-    #define LV_USE_THEME_BASIC      0
-    #define LV_USE_THEME_MONO       0
-#endif
+    #define LV_USE_THEME_DEFAULT      0
+    #define LV_USE_THEME_BASIC        0
+    #define LV_USE_THEME_MONO         0
+#endif /* LV_USE_EXTRA_THEMES */
 
 /*==================
  * LAYOUTS
